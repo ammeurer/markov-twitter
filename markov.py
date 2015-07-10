@@ -1,5 +1,6 @@
 import sys
 import random
+import tweet
 
 
 class SimpleMarkovGenerator(object):
@@ -106,6 +107,11 @@ if __name__ == "__main__":
     # we should call the read_files method with the list of filenames
     text = markov.read_files(filenames)
     markov_chains = markov.make_chains(text, 2)
-    # we should call the make_text method 5x
-    #for i in xrange(5):
-    print markov.make_text(markov_chains)
+    
+    command = ""
+    
+    while command != "q":
+        command = raw_input("Press [enter] to tweet again or 'q' to quit: ")
+        if command == "":
+            tweet.tweet_markov(markov.make_text(markov_chains))
+    
